@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+  .form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+/* Add some margins for each label */
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+/* Style the input fields */
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Style the submit button */
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card">
+        <div class="card-body">
+    <form class="form-inline" action="{% url 'IposApp:Display' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="table-responsive" style=”overflow-x:auto;”>
+        <table  class="table table-bordered">
+
+
+
+              <a type="button" class="btn btn-outline-primary"  href="{% url 'IposApp:Reg' %}">New</a>
+
+
+
+
+
+
+            <tr>
+
+                <th>Id</th>
+                <th>CustomerName</th>
+                <th>MobileNumber</th>
+                <th>NumberOfPerson</th>
+                <th>SelectedTable</th>
+                <th>TokenTime</th>
+                <th>TokenIn</th>
+                <th>Action</th>
+
+            </tr>
+
+
+        {% for i in result %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.CustomerName}}</td>
+                 <td>{{i.MobileNumber}}</td>
+                 <td>{{i.NoOfPerson}}</td>
+                 <td>{{i.SelectTable}}</td>
+                <td>{{i.TokenTime}}</td>
+                <td>{{i.TokenIn}}</td>
+                <td>
+
+
+<a class="btn btn-outline-success" id="update" href="{% url 'IposApp:show' i.id  %}">Update</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+
+</table>
+   </div> </form>
+
+</div></div>
+    </div></div>
+
+</body>
+{% endblock %}
+</html>

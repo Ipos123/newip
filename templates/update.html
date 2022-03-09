@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+<form action="{% url 'IposApp:Profile' user.id %}" method="post" enctype="multipart/form-data">
+
+    <table>
+
+        <tr>
+            <td>
+
+                {{ form.as_table }}
+
+
+            </td>
+        </tr>
+
+
+    </table>
+ <input class="btn btn-warning" type="submit" value="Update">
+</form>
+
+</body>
+{% endblock %}
+</html>
